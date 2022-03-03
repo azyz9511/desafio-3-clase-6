@@ -17,6 +17,7 @@ app.get('/productos', ( req , res ) => {
     const arrProductos = productos.getAll();
     arrProductos.then( contenido => {
         const contenidoStr = JSON.stringify(contenido,null,2);
+        res.type('json');
         res.send(contenidoStr);
     })
 });
@@ -25,6 +26,7 @@ app.get('/productoRandom', ( req , res ) => {
     const numRandom = Math.floor( Math.random()*(4 - 1) + 1);
     const producto = productos.getById(numRandom);
     producto.then( contenido => {
-        res.send(contenido);
+        res.type('json');
+        res.send(JSON.stringify(contenido,null,2));
     })
 });
